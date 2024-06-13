@@ -1,0 +1,13 @@
+#menu-oto-root > a:before {
+    background: url("../images/menu_icon.png") center top no-repeat;
+    content: "";
+}
+
+.oto_form_help{
+	margin-top:20px;
+	margin-bottom:20px;
+}
+
+.admin_agreement_check{
+	margin-bottom:20px;
+}

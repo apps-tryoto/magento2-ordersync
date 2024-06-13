@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+		<oto_ordersync>
+			<connection_settings>
+				<enabled>1</enabled>
+			</connection_settings>
+
+			<account_settings>
+				<account_code></account_code>
+				<account_code_prefix></account_code_prefix>
+				<account_code_suffix></account_code_suffix>
+				<account_name_prefix></account_name_prefix>
+				<account_name_suffix>(WEB)</account_name_suffix>
+				<account_code_source>billing_address_id</account_code_source>
+				<account_payment_type></account_payment_type>
+			</account_settings>
+
+			<order_settings>
+				<is_active>1</is_active>
+				<sync_all_orders>0</sync_all_orders>
+				<order_prefix>KLS</order_prefix>
+				<order_prefix_zero_total>KLN</order_prefix_zero_total>
+				<order_prefix_bankpayment>KLH</order_prefix_bankpayment>
+				<order_prefix_bankpayment_method>banktransfer</order_prefix_bankpayment_method>
+				<order_prefix_cod>KLKN</order_prefix_cod>
+				<order_prefix_cod_method>cashondelivery</order_prefix_cod_method>
+				<order_prefix_cod_cc>KLKK</order_prefix_cod_cc>
+				<order_prefix_cod_cc_method>phoenix_cashondelivery</order_prefix_cod_cc_method>
+				<order_suffix></order_suffix>
+				<address_code_prefix>W</address_code_prefix>
+				<address_code_suffix></address_code_suffix>
+				<order_status_by_payment_method></order_status_by_payment_method>
+				<add_product_if_not_exists>1</add_product_if_not_exists>
+				<product_code_prefix></product_code_prefix>
+				<product_code_suffix></product_code_suffix>
+				<send_as_tax_included>1</send_as_tax_included>
+				<send_discount_as_separate_line>0</send_discount_as_separate_line>
+				<backorder_orders_at_date>0</backorder_orders_at_date>
+				<backorder_date_field></backorder_date_field>
+				<canceled_order_sync>1</canceled_order_sync>
+				<refunded_order_sync>1</refunded_order_sync>
+				<refunded_order_sync_partial>1</refunded_order_sync_partial>
+			</order_settings>
+
+			<debug>
+				<is_active>0</is_active>
+			</debug>
+		</oto_ordersync>
+    </default>
+</config>
+

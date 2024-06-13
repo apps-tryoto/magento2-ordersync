@@ -1,0 +1,126 @@
+<?php
+
+$jobData = $block->getData('job_data')->getData();
+$jobLogData = $block->getData('job_log_data');
+
+$states_yesno = [
+					'Y' => (string) __('Yes'),
+					'N' => (string) __('No'),
+				];
+?>
+<table class="admin__table-primary">
+	<tbody>
+		<tr class="headings">
+			<td><?=__('Status');?></td>
+			<td>
+				<span class="status_<?php echo strtolower(@$jobData['job_status'])?>"><?=@$jobData['job_status'];?></span>
+			</td>
+			<td><?=__('Error Count:');?> <?=intval(@$jobData['error_count']);?> </td>
+			<td>
+				<button id="orderSyncResetErrorCount" title="<?=__('Reset Error Count')?>" type="button" class="action-default scalable action-save action-secondary" onclick="setLocation('<?php echo $this->getUrl('oto_order_sync/OrderSync/ResetErrorCount',['job_id' => $jobData['job_id']])?>')" data-ui-id="widget-button-0"><span><?=__('Reset Error Count')?></span></button>
+			</td>
+		</tr>
+		<tr class="headings">
+			<td><?=__('Job Id');?></td>
+			<td><?=__('Target');?></td>
+			<td><?=__('Order Id');?></td>
+			<td><?=__('Order Inc. Id');?></td>
+		</tr>
+		<tr>
+			<td><?=@$jobData['job_id'];?></td>
+			<td><?=strtoupper(@$jobData['job_target']);?></td>
+			<td><?=@$jobData['order_id'];?></td>
+			<td><?=@$jobData['order_increment_id'];?></td>
+		</tr>
+		<tr class="headings">
+			<td><?=__('Customer Name');?></td>
+			<td><?=__('Created At');?></td>
+			<td><?=__('Last Update');?></td>
+			<td><?=__('%1 Oder Id',strtoupper(@$jobData['job_target']));?></td>
+		</tr>
+		<tr>
+			<td><?=@$jobData['customer_name'];?> (<?=@$jobData['customer_email'];?>)</td>
+			<td><?=@$jobData['created_at'];?></td>
+			<td><?=@$jobData['updated_at'];?></td>
+			<td><?=@$jobData['ret_order_id'];?></td>
+		</tr>
+		<tr class="headings">
+			<td><?=__('Invoice Created ?');?></td>
+			<td><?=__('Invoice Number');?></td>
+			<td><?=__('Invoice Date.');?></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td><?=@$states_yesno[@$jobData['ret_order_completed']];?></td>
+			<td><?=@$jobData['ret_invoice_number'];?></td>
+			<td><?=@$jobData['ret_invoice_date'];?></td>
+			<td></td>
+		</tr>
+
+	</tbody>
+</table>
+
+<table class="admin__table-primary">
+	<tbody>
+		<tr>
+			<td colspan="4"><?=__("Last Error: <span style='color:darkred;'>%1</span>",@$jobData['last_error_msg']);?></td>
+		</tr>
+	</tbody>
+</table>
+<h3><?php echo __("Transaction History")?></h3>
+		<?php
+
+		foreach ($jobLogData as $jobLog) 
+		{
+			?>
+			<table class="admin__table-primary queue_log_table">
+				<tbody>
+					<tr>
+						<td><strong><?=__('#ID').":".$jobLog['job_log_id']?></strong></td>
+						<td><strong><?=__('Job Type').":".$jobLog['action_type']?></strong></td>
+					</tr>
+					<tr>
+						<td colspan=2><pre><?="<strong>".__('Request').":</strong>".json_encode(json_decode($jobLog['data_sent']), JSON_PRETTY_PRINT);?></pre></td>
+					</tr>
+					<tr>
+						<td colspan=2><pre><?="<strong>".__('Response')."</strong>:".json_encode(json_decode($jobLog['data_response']), JSON_PRETTY_PRINT);?></pre></td>
+					</tr>
+				</tbody>
+			</table>
+			<?php
+		} // foreach sonu
+		?>
+
+
+	<style type="text/css">
+		.status_success{padding:3px;padding-left:10px;padding-right:10px;color:white;background:green;border-radius:5px;margin:5px;}
+		.status_fail{padding:3px;padding-left:10px;padding-right:10px;color:white;background:darkred;border-radius:5px;margin:5px;}
+		.admin__table-primary{border-top:lightgrey 1px solid; margin-bottom:20px;}
+		.headings{font-weight:bold;}
+		.admin__table-primary th,
+		.admin__table-primary td,
+		.admin__table-secondary th,
+		.admin__table-secondary td
+		{
+			border-right:lightgrey 1px solid;
+			padding-left:10px;
+		}
+
+		.queue_log_table {
+			max-width:100%;
+			margin-bottom:10px;
+		}
+
+		.admin__table-primary th:first-child, .admin__table-primary td:first-child, 
+		.admin__table-secondary th:first-child, .admin__table-secondary td:first-child 
+		{
+			padding-left: 10px !important;
+		}
+
+		.admin__table-primary,
+		.admin__table-secondary
+		{
+			border-left:lightgrey 1px solid;
+			border-bottom:lightgrey 2px solid !important;
+		}
+	</style>

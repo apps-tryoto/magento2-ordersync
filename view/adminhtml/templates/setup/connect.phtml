@@ -1,0 +1,80 @@
+<?php
+
+/**
+ * Oto OrderSync
+ *
+ * Synchronizes orders to OTO platform.
+ *
+ * Copyright (C) 2024 Oto <info@tryoto.com>
+ *
+ * @package Oto_OrderSync
+ * @copyright Copyright (c) 2024 Oto (http://www.tryoto.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Oto <info@tryoto.com>
+ */
+
+$helper = $this->helper('\Oto\OrderSync\Helper\Data');
+
+?>
+<div class="oto_form_header">
+	<img class="logo-default flex-grow-1" src="<?php echo $this->getViewFileUrl('Oto_OrderSync::images/otoLogo.png')?>" alt="OTO" itemprop="url" srcset="<?php echo $this->getViewFileUrl('Oto_OrderSync::images/otoLogo.png')?> 2x">
+</div>
+<div class="oto_form_help">
+<?php echo __('Description goes here')?>	
+</div>
+<?php 
+	if ($helper->getBearerSetting() != 1) 
+	{
+		$oauthAccessUrl = $block->getUrl('admin/system_config/edit',['section' => 'oauth']);
+		?>
+		<div class="admin__field-warning_header">
+			<?php echo __('Fix This'); ?>
+		</div>
+		<div class="admin__field-warning">
+			<?php echo __('<strong>"Allow OAuth Access Tokens to be used as standalone Bearer tokens"</strong> setting under Stores / Configuration / Services / Oauth is set <strong>No</strong>. Oto integration system can not access to this website if you keep this setting. Please set it to Yes.'); ?>
+			<?php echo __('<a href="%1">Click here</a> to go to setting page.', $oauthAccessUrl); ?>
+		</div>
+		<?php
+	} // if sonu
+?>
+<div class="oto_form_wrapper">
+	<form method="post" action="<?php echo $block->getUrl('oto/setup/connect'); ?>">
+		<div class="admin__field">
+			<label class="admin__field-label" for="oto_store_name"><?php echo __('Store Name'); ?></label>
+			<div class="admin__field-control">
+				<input type="text" id="oto_store_name" name="oto_store_name" class="admin__control-text" required value="<?php echo $helper->getDefaultStoreName();?>">
+			</div>
+			<div class="admin__field-comment">
+				<?php echo __('You can edit this store name. This name will appear in your Sales Channel record on OTO panel.'); ?>
+			</div>
+		</div>
+		<div class="admin__field">
+			<label class="admin__field-label" for="oto_username"><?php echo __('Username'); ?></label>
+			<div class="admin__field-control">
+				<input type="text" id="oto_username" name="oto_username" class="admin__control-text" required>
+			</div>
+			<div class="admin__field-comment">
+				<?php echo __('Enter your OTO panel user name.'); ?>
+			</div>
+		</div>
+		<div class="admin__field">
+			<label class="admin__field-label" for="oto_password"><?php echo __('Password'); ?></label>
+			<div class="admin__field-control">
+				<input type="password" id="oto_password" name="oto_password" class="admin__control-text" required>
+			</div>
+			<div class="admin__field-comment">
+				<?php echo __('Enter your OTO panel password.'); ?>
+			</div>
+		</div>
+		<div class="admin__actions-toolbar">
+			<div class="admin__actions-primary">
+				<button type="submit" class="action-primary"><?php echo __('Connect'); ?></button>
+			</div>
+		</div>
+		<input type="hidden" name="form_key" value="<?php echo $this->getFormKey()?>"/>
+	</form>
+</div>
+
+<style type="text/css">
+
+</style>

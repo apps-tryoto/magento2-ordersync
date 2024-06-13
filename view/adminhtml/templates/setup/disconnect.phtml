@@ -1,0 +1,64 @@
+<?php
+
+/**
+ * Oto OrderSync
+ *
+ * Synchronizes orders to OTO platform.
+ *
+ * Copyright (C) 2024 Oto <info@tryoto.com>
+ *
+ * @package Oto_OrderSync
+ * @copyright Copyright (c) 2024 Oto (http://www.tryoto.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Oto <info@tryoto.com>
+ */
+
+$helper = $this->helper('\Oto\OrderSync\Helper\Data');
+
+?>
+<div class="oto_form_header">
+	<img class="logo-default flex-grow-1" src="<?php echo $this->getViewFileUrl('Oto_OrderSync::images/otoLogo.png')?>" alt="OTO" itemprop="url" srcset="<?php echo $this->getViewFileUrl('Oto_OrderSync::images/otoLogo.png')?> 2x">
+</div>
+<?php 
+	
+	if ($helper->getBearerSetting() != 1) 
+	{
+		$oauthAccessUrl = $block->getUrl('admin/system_config/edit',['section' => 'oauth']);
+		?>
+		<div class="admin__field-warning_header">
+			<?php echo __('Fix This'); ?>
+		</div>
+		<div class="admin__field-warning">
+			<?php echo __('<strong>"Allow OAuth Access Tokens to be used as standalone Bearer tokens"</strong> setting is No. Oto integration system can not access to this website if you keep this setting. Please set it to Yes.'); ?>
+			<?php echo __('<a href="%1">Click here</a> to go to setting page.', $oauthAccessUrl); ?>
+		</div>
+		<?php
+	} // if sonu
+?>
+<div class="oto_form_help">
+<?php echo __('Your store is connected to OTO. If you want to break the connection, press the Disconnect button. Orders created after this process will not be transferred to the OTO system.')?>	
+</div>
+<div class="oto_form_wrapper">
+	<form method="post" action="<?php echo $block->getUrl('oto/setup/disconnect'); ?>">
+		<div class="admin__field">
+			<div class="admin__field-control admin_agreement_check">
+				<input type="checkbox" class="action-primary" name="agree" required><span class="check_label"><?php echo __('I agree to disconnect my store from OTO'); ?></span>
+			</div>
+		</div>
+		<div class="admin__field">
+			<div class="admin__field-control admin_agreement_check">
+				<input type="checkbox" class="action-primary" name="delete_profile"><span class="check_label"><?php echo __('Delete connected Integration profile too'); ?></span>
+			</div>
+		</div>
+		<div class="admin__actions-toolbar">
+			<div class="admin__actions-primary">
+				<button type="submit" class="action-primary"><?php echo __('Disconnect'); ?></button>
+			</div>
+		</div>
+		<input type="hidden" name="form_key" value="<?php echo $this->getFormKey()?>"/>
+	</form>
+</div>
+
+<style type="text/css">
+
+</style>

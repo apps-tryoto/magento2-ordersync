@@ -1,0 +1,30 @@
+{
+    "name": "oto/mage2-ordersync",
+    "description": "Order Synchronization extension for Magento 2x",
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "homepage": "https://www.tryoto.com",
+    "authors": [{
+        "name" : "Hidayet Ok / TryOto",
+        "email": "info@tryoto.com"
+    }],		
+
+	"autoload": {
+        "files": [ 
+					"registration.php"
+				],
+        "psr-4": {
+            "Oto\\OrderSync\\": ""
+        }
+    },
+
+    "require-dev": {
+      "phpunit/phpunit": "@stable",
+      "squizlabs/php_codesniffer": "@stable",
+      "phpmd/phpmd": "@stable",
+      "pdepend/pdepend": "@stable",
+      "friendsofphp/php-cs-fixer": "@stable",
+      "lusitanian/oauth": "@stable",
+      "sebastian/phpcpd": "@stable"
+    }
+}

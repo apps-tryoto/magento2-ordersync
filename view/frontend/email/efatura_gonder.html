@@ -1,0 +1,26 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<!--@subject {{trans "%store_name için E-Arşiv faturanız" store_name=$store.frontend_name}} @-->
+<!--@vars {
+"var store.frontend_name":"Store Name",
+"var customer.email":"Customer Email",
+"var customer.name":"Customer Name"
+} @-->
+
+{{template config_path="design/email/header_template"}}
+<br />
+<p class="greeting">{{trans "Merhaba %name," name=$customerName}}</p>
+<br />
+<p>{{trans "%store_name mağazamızda yaptığınız alışverişin e-fatura/e-arşiv belgesinin PDF versiyonuna aşağıdaki adresten ulaşabilirsiniz." store_name=$store.frontend_name}}</p>
+<br />
+<p>
+	<strong><a href='{{var efaturaPdfUrl}}'>{{trans "İndirmek için buraya tıklayınız"}} </a></strong>
+</p>
+<br />
+<p class="greeting">{{trans "Bizi tercih ettiğiniz için teşekkür ederiz."}}</p>
+<br />
+{{template config_path="design/email/footer_template"}}

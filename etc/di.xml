@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+
+/**
+ * Oto OrderSync
+ *
+ * Synchronizes orders to OTO platform.
+ *
+ * Copyright (C) 2024 Oto <info@tryoto.com>
+ *
+ * @package Oto_OrderSync
+ * @copyright Copyright (c) 2024 Oto (http://www.tryoto.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Oto <info@tryoto.com>
+ */
+
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="Oto_SendNewOrders" xsi:type="object">Oto\OrderSync\Console\Command\SendNewOrders</item>
+                <item name="Oto_ListJobs" xsi:type="object">Oto\OrderSync\Console\Command\ListJobs</item>
+                <item name="Oto_ConnectionTest" xsi:type="object">Oto\OrderSync\Console\Command\ConnectionTest</item>
+			</argument>
+        </arguments>
+    </type>
+</config>

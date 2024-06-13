@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+
+        <add id="Oto::Root" title="Oto Integration" module="Oto_OrderSync" sortOrder="9991" resource="Oto_OrderSync::menu"/>
+            
+            <add id="Oto::Reports"	title="Order Sync"    parent="Oto::Root"      module="Oto_OrderSync" sortOrder="100" resource="Oto_OrderSync::menu"/>
+                <add id="Oto::Reports::Order_Transactions"	title="Order Sync Job List"		action="oto_order_sync/Grid/OrderSync"	parent="Oto::Reports"  module="Oto_OrderSync" sortOrder="100" resource="Oto_OrderSync::menu"/>
+
+			<add id="Oto::General" parent="Oto::Root"	title="Settings" module="Oto_OrderSync" sortOrder="200" resource="Oto_OrderSync::menu"/>
+                <add id="Oto::General::OrderSync"	title="Order Sync Settings"		action="adminhtml/system_config/edit/section/oto_ordersync/"	parent="Oto::General"  module="Oto_OrderSync" sortOrder="100" resource="Oto_OrderSync::general"/>
+                <add id="Oto::General::Connect"		title="Connect To Oto"			action="oto/setup"									parent="Oto::General"  module="Oto_OrderSync" sortOrder="110" resource="Oto_OrderSync::general"/>
+
+    </menu>
+</config>
+
+

@@ -1,0 +1,65 @@
+<?php
+	$jobs = $this->viewOrderSyncJobs();
+?>
+<section class="admin__page-section order-view-billing-shipping">
+	<div class="admin__page-section-title">
+		<span class="title"><?php echo __('OTO OrderSync')?></span>
+	</div>
+	<div class="admin__page-section-content">
+		<?php
+			if ($jobs->count() < 1) 
+			{
+				echo __('No order sync job found for this order');
+			} // if sonu
+			else 
+			{
+				?>
+				<div class="admin__page-section-item">
+					<table class="admin__table-secondary">
+						<thead>
+							<tr>
+								<td><?php echo __('Job Id')?></td>
+								<td><?php echo __('Target')?></td>
+								<td><?php echo __('Status')?></td>
+
+								<td><?php echo __('Order Id')?></td>
+								<td><?php echo __('Customer Id')?></td>
+								<td><?php echo __('Invoice Created')?></td>
+								<td><?php echo __('Invoice No')?></td>
+								<td><?php echo __('Invoice Date')?></td>
+
+								<td><?php echo __('Error Count')?></td>
+								<td><?php echo __('Last Error Message')?></td>
+							</tr>
+						</thead>
+						<tbody>
+				<?php
+				foreach ($jobs as $job) 
+				{
+				?>
+					<tr>
+						<td><a href="<?=$this->getUrl('oto_order_sync/OrderSync/View',['job_id' => $job->getData('job_id')])?>"><?php echo $job->getData('job_id');?></a></td>
+						<td><?=ucwords(str_replace("_"," ",$job->getData('job_target')))?></td>
+						<td><?=$job->getData('job_status')?></td>
+						
+						<td><?=$job->getData('ret_order_id')?></td>
+						<td><?=$job->getData('ret_account_id')?></td>
+						<td><?=$job->getData('ret_order_completed')?></td>
+						<td><?=$job->getData('ret_invoice_number')?></td>
+						<td><?=$job->getData('ret_invoice_date')?></td>
+
+						<td><?=$job->getData('error_count')?></td>
+						<td><?=$job->getData('last_error_msg')?></td>
+					</tr>
+				<?php
+				} // foreach sonu
+				?>
+						</tbody>
+					</table>
+				</div>
+				<?php
+			} // else sonu
+			
+		?>
+	</div>
+</section>

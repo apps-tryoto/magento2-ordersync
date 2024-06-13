@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<!-- 
+
+/**
+ * Oto OrderSync
+ *
+ * Synchronizes orders to OTO platform.
+ *
+ * Copyright (C) 2024 Oto <info@tryoto.com>
+ *
+ * @package Oto_OrderSync
+ * @copyright Copyright (c) 2024 Oto (http://www.tryoto.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Oto <info@tryoto.com>
+ */
+
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="oto_integration" translate="label comment" sortOrder="999999999" class="oto_configuration_tab">
+            <label>Oto Integration</label>
+        </tab>
+        
+		<section id="oto_ordersync" translate="label comment" sortOrder="100" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Order Integration Settings</label>
+            <tab>oto_integration</tab>
+            <resource>Oto_OrderSync::system_config</resource>
+
+			<group id="order_settings" translate="label comment" sortOrder="200" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Order Synchronization</label>
+                <field id="is_active" translate="label comment" sortOrder="100" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Is Active ?</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                
+				<field id="start_from_order_id" translate="label comment" sortOrder="200" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Start Sync From This Order ID]]></label>
+                    <comment><![CDATA[If you want to prevent old orders from being transferred, enter the order number you want the integration to start with here. <br /><br />Here, do not write the long number of the order such as 00000073647, but the number you see in the URL as order/view/order_id/123 when you enter the order details on the management page. <br />The order number in this example will be 123.]]></comment>
+                </field>
+
+				<field id="sync_all_orders" translate="label comment" sortOrder="110" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Transfer non-paid orders too</label>
+                    <comment><![CDATA[If you select yes, it will also transfer orders for which payment has not been received. If you select No, only orders with Processing status will be transferred.]]></comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                
+                <field id="sync_all_orders_get_payment_status_from_target" translate="label comment" sortOrder="120" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+					<depends><field id="oto_ordersync/order_settings/sync_all_orders">1</field></depends>
+                    <label>Automatically Read Back Orders for Which Payments Have Not Been Received</label>
+                    <comment><![CDATA[If the "Also Transfer Unpaid Orders" option is selected as Yes and the transferred orders are invoiced, the system automatically reads this information and adds a payment voucher to the order in question.]]></comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                
+				<field id="order_prefix" translate="label comment" sortOrder="200" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Order Number Prefix]]></label>
+                </field>
+                
+				<field id="order_prefix_zero_total" translate="label comment" sortOrder="209" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Order Number Prefix <span style="color:darkred;">(For Zero Total Orders)</span>]]></label>
+                </field>
+
+				<field id="order_prefix_bankpayment" translate="label comment" sortOrder="210" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Order Number Prefix (Bank Payment/Wire Transfer Orders)]]></label>
+                </field>
+				
+				<field id="order_prefix_bankpayment_method" translate="label comment" sortOrder="215" type="multiselect" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Bank Payment/Wire Transfer Methods]]></label>
+					<source_model>\Oto\OrderSync\Model\Config\Source\PaymentMethods</source_model>
+                    <comment><![CDATA[When orders made with the payment methods you select in this field are transferred to the Auto side, the prefix you specify in the field above is added. You can make multiple selections or remove existing selections with CTRL + Left click.]]></comment>
+				</field>
+			
+				<field id="order_prefix_cod" translate="label comment" sortOrder="220" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Order Number Prefix (Cash On Delivery Orders)]]></label>
+                </field>
+				
+				<field id="order_prefix_cod_method" translate="label comment" sortOrder="225" type="multiselect" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Cash On Delivery Methods]]></label>
+					<source_model>\Oto\OrderSync\Model\Config\Source\PaymentMethods</source_model>
+                    <comment><![CDATA[When orders made with the payment methods you select in this field are transferred to the Auto side, the prefix you specify in the field above is added. You can make multiple selections or remove existing selections with CTRL + Left click.]]></comment>
+				</field>
+
+				<field id="order_prefix_cod_cc" translate="label comment" sortOrder="230" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Order Number Prefix (Paid On Delivery By Credit Card Orders)]]></label>
+                </field>
+				
+				<field id="order_prefix_cod_cc_method" translate="label comment" sortOrder="235" type="multiselect" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Paid On Delivery By Credit Card Methods]]></label>
+					<source_model>\Oto\OrderSync\Model\Config\Source\PaymentMethods</source_model>
+                    <comment><![CDATA[When orders made with the payment methods you select in this field are transferred to the Auto side, the prefix you specify in the field above is added. You can make multiple selections or remove existing selections with CTRL + Left click.]]></comment>
+				</field>
+
+				<field id="order_suffix" translate="label comment" sortOrder="350" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Order Number Suffix]]></label>
+                </field>
+
+				<field id="send_as_tax_included" translate="label comment" sortOrder="700" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Send Order Prices and Total Included Tax</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+				<field id="canceled_order_sync" translate="label comment" sortOrder="900" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Synchronize Canceled Orders]]></label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Orders canceled on the Magento side (if no invoice has been issued on the Oto side) are also put in a canceled status on the Oto side.]]></comment>
+                </field>
+
+			</group>
+
+			<group id="debug" translate="label comment" sortOrder="9900" showInDefault="1">
+                <label>Debug Mode</label>
+                <field id="is_active" translate="label comment" sortOrder="100" type="select" showInDefault="1">
+                    <label>Is Active ?</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+			</group>
+
+		</section>
+
+	</system>
+</config>
+
