@@ -44,46 +44,6 @@ class InstallData implements InstallDataInterface
         ModuleDataSetupInterface $setup,
         ModuleContextInterface $context
     ) {
-
-		$customerSetup = $this->customerSetupFactory->create(['setup' => $setup]);
-		$entityTypeId = $customerSetup->getEntityTypeId(\Magento\Customer\Model\Customer::ENTITY);
-		$customerSetup->removeAttribute(\Magento\Customer\Model\Customer::ENTITY, "oto_account_code");
-
-		$customerSetup->addAttribute(\Magento\Customer\Model\Customer::ENTITY, "oto_account_code",  array(
-			"type"		=> "varchar",
-			"backend"	=> "",
-			"label"		=> "Oto Cari Kodu",
-			"input"		=> "text",
-			"source"	=> "",
-			"visible"	=> true,
-			"required"	=> false,
-			"default"	=> "",
-			"frontend"	=> "",
-			"unique"	=> false,
-			"note"		=> ""
-		));
-
-		$oto_account_code   = $customerSetup->getAttribute(\Magento\Customer\Model\Customer::ENTITY, "oto_account_code");
-
-		$oto_account_code = $customerSetup->getEavConfig()->getAttribute(\Magento\Customer\Model\Customer::ENTITY, 'oto_account_code');
-//		$used_in_forms[]="adminhtml_customer";
-//		$used_in_forms[]="checkout_register";
-//		$used_in_forms[]="customer_account_create";
-//		$used_in_forms[]="customer_account_edit";
-//		$used_in_forms[]="adminhtml_checkout";
-		$oto_account_code
-			//->setData("used_in_forms", $used_in_forms)
-			->setData("is_used_for_customer_segment", true)
-			->setData("is_system", 0)
-			->setData("is_user_defined", 1)
-			->setData("is_visible", 1)
-			->setData("is_used_in_grid", 1)
-			->setData("is_visible_in_grid", 1)
-			->setData("is_filterable_in_grid", 1)
-			->setData("is_searchable_in_grid", 1)
-			->setData("sort_order", 100);
-
-		$oto_account_code->save();
 	
 	}
 }

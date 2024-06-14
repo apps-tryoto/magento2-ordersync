@@ -3,10 +3,10 @@
     <acl>
         <resources>
             <resource id="Magento_Backend::admin">
-				<resource id="Oto_OrderSync::elements" title="Oto Sipariş Kuyruğu" sortOrder="9999">
+				<resource id="Oto_OrderSync::elements" title="Oto Order Sync" sortOrder="9999">
 					<resource id="Oto_OrderSync::OrderSyncJob_List"	title="Order Job List" sortOrder="10" />
 					<resource id="Oto_OrderSync::OrderSyncJob_View"	title="Order Job Detail" sortOrder="20" />
-					<resource id="Oto_OrderSync::Setup"	title="Order Job Detail" sortOrder="30" />
+					<resource id="Oto_OrderSync::Setup"	title="Oto Connect/Disconnect Website" sortOrder="30" />
 				</resource>
             </resource>
         </resources>

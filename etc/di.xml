@@ -20,6 +20,7 @@
         <arguments>
             <argument name="commands" xsi:type="array">
                 <item name="Oto_SendNewOrders" xsi:type="object">Oto\OrderSync\Console\Command\SendNewOrders</item>
+                <item name="Oto_SendCanceledOrders" xsi:type="object">Oto\OrderSync\Console\Command\SendCanceledOrders</item>
                 <item name="Oto_ListJobs" xsi:type="object">Oto\OrderSync\Console\Command\ListJobs</item>
                 <item name="Oto_ConnectionTest" xsi:type="object">Oto\OrderSync\Console\Command\ConnectionTest</item>
 			</argument>

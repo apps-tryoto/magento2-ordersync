@@ -67,23 +67,23 @@ class InstallSchema implements InstallSchemaInterface
 
         $table = $connection
             ->newTable($installer->getTable('oto_order_jobs'))
-			->addColumn('job_id'                 , $type_int,		10,		['nullable' => false,'unsigned' => true,'auto_increment' => true,'primary' => true],'Job ID')
+			->addColumn('job_id'               , $type_int,		10,		['nullable' => false,'unsigned' => true,'auto_increment' => true,'primary' => true],'Job ID')
 			->addColumn('job_type'             , $type_text,	16,		['nullable' => false],	'Job Type : new_order, cancel_order, partial_cancel_order')
-			->addColumn('job_target'           , $type_text,	16,		['nullable' => false],	'Job Targeti : logo, nebim, netsis, uyum, mikro... ')
-			->addColumn('order_id'             , $type_int,		10,		['nullable' => false,'unsigned' => true],'Sipariş ID')
-			->addColumn('order_increment_id'   , $type_text,	24,		['nullable' => false],	'Sipariş NO')
-			->addColumn('customer_id'          , $type_int,		10,		['nullable' => true,'unsigned' => true],'Müşteri ID')
-			->addColumn('customer_name'        , $type_text,	64,		['nullable' => true],	'Müşteri Adı')
-			->addColumn('customer_email'       , $type_text,	64,		['nullable' => true],	'Müşteri E-mail')
-			->addColumn('created_at'           , $type_dtime,	null,	['nullable' => false],	'Oluşturulma tarihi')
-			->addColumn('updated_at'           , $type_dtime,	null,	['nullable' => true],	'Güncelleme tarihi')
-			->addColumn('job_status'           , $type_text,	24,		['nullable' => true],	'İşlem Durumu')
+			->addColumn('job_target'           , $type_text,	16,		['nullable' => false],	'Job Target : oto... ')
+			->addColumn('order_id'             , $type_int,		10,		['nullable' => false,'unsigned' => true],'Order Id')
+			->addColumn('order_increment_id'   , $type_text,	24,		['nullable' => false],	'Order Increment Id')
+			->addColumn('customer_id'          , $type_int,		10,		['nullable' => true,'unsigned' => true],'Customer Id')
+			->addColumn('customer_name'        , $type_text,	64,		['nullable' => true],	'Customer Name')
+			->addColumn('customer_email'       , $type_text,	64,		['nullable' => true],	'Customer Email')
+			->addColumn('created_at'           , $type_dtime,	null,	['nullable' => false],	'Created At')
+			->addColumn('updated_at'           , $type_dtime,	null,	['nullable' => true],	'Updated At')
+			->addColumn('job_status'           , $type_text,	24,		['nullable' => true],	'Job Status')
 			->addColumn('error_count'          , $type_int,		4,		['nullable' => true,'unsigned' => true],	'Error Count')
-			->addColumn('ret_order_id'         , $type_text,	24,		['nullable' => true,'unsigned' => true],	'Kaydedilen Sipariş No')
-			->addColumn('ret_account_id'       , $type_text,	24,		['nullable' => true,'unsigned' => true],	'Kaydedilen Account Id')
-			->addColumn('ret_order_completed'  , $type_text,	1,		['nullable' => true,'default' => "N"],	'Sipariş karşı yazılımda tamamlandı veya faturası kesildi mi ?')
-			->addColumn('ret_invoice_number'   , $type_text,	96,		['nullable' => true,'default' => null],	'Karşı yazılımda kesilen fatura numarası')
-			->addColumn('ret_invoice_date'     , $type_dtime,	null,	['nullable' => true,'default' => null],	'Karşı yazılımda fatura oluşturulma zamanı')
+			->addColumn('ret_order_id'         , $type_text,	24,		['nullable' => true,'unsigned' => true],	'Target System Order Id')
+			->addColumn('ret_account_id'       , $type_text,	24,		['nullable' => true,'unsigned' => true],	'Target System Customer Id')
+			->addColumn('ret_order_completed'  , $type_text,	1,		['nullable' => true,'default' => "N"],	'Is Invoice printed')
+			->addColumn('ret_invoice_number'   , $type_text,	96,		['nullable' => true,'default' => null],	'Printed invoice number')
+			->addColumn('ret_invoice_date'     , $type_dtime,	null,	['nullable' => true,'default' => null],	'Printed invoice print date')
 			->addColumn('last_error_msg'       , $type_text,	236,	['nullable' => true],	'Last Error Message')
 
 			->addIndex($setup->getIdxName('oto_order_jobs',['job_id'],\Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_PRIMARY),['job_id'])
@@ -92,7 +92,7 @@ class InstallSchema implements InstallSchemaInterface
 			->addIndex($setup->getIdxName('oto_order_jobs',['customer_id'],\Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_INDEX),['customer_id'])
 			->addIndex($setup->getIdxName('oto_order_jobs',['customer_email'],\Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_FULLTEXT),['customer_email'])
             
-			->setComment('Oto Sipariş Entegrasyonları için ortak görev kuyruğu');
+			->setComment('Order synchronization job list');
 
         $connection->createTable($table);
 
@@ -112,7 +112,7 @@ class InstallSchema implements InstallSchemaInterface
             ->addColumn('conn_stats',$type_text,null,['nullable' => true],'Connection statistics')
             ->addColumn('conn_success',Table::TYPE_SMALLINT,1,['default' => '0','nullable' => true,'precision' => '3'],'Connection successful ? 0:No, 1:Yes')
             ->addColumn('created_at',$type_dtime,null,['nullable' => true],'Log Tarihi')
-			->setComment('Oto Sipariş Entegrasyonları için görev kuyruğu logu');
+			->setComment('Order synchronization job logs');
         
 		$connection->createTable($table);
 
