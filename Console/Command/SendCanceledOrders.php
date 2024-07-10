@@ -64,20 +64,6 @@ class SendCanceledOrders extends Command
 					);
 
 		$this->addOption(
-						'oto-order-id',
-						'l',
-						InputOption::VALUE_OPTIONAL,
-						'If you want to run specific order use oto order id'
-					);
-
-		$this->addOption(
-						'oto-order',
-						'c',
-						InputOption::VALUE_OPTIONAL,
-						'If you want to run specific order use oto order id'
-					);
-
-		$this->addOption(
 						'debug-order',
 						'd',
 						InputOption::VALUE_NONE,
@@ -121,7 +107,7 @@ class SendCanceledOrders extends Command
 	
 		if ($this->_otoHelper->getConfig('oto_ordersync/order_settings/canceled_order_sync') != '1') 
 		{
-			$output->writeln("\n<error>".__('İptal Siparişlerin aktarımı kapalı. Oto ayarlarından açabilirsiniz.')."</error>\n");
+			$output->writeln("\n<error>".__('Transferring canceled orders is not enabled. You need to enable it from oto configuration in admin.')."</error>\n");
 			return;
 		} // if sonu
 

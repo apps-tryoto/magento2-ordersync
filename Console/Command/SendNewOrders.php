@@ -64,27 +64,6 @@ class SendNewOrders extends Command
 					);
 
 		$this->addOption(
-						'delete-order',
-						false,
-						InputOption::VALUE_NONE,
-						'Deelete order before transferring order if exists'
-					);
-
-		$this->addOption(
-						'delete-customer',
-						false,
-						InputOption::VALUE_NONE,
-						'Delete customer account before transferring customer if exists'
-					);
-
-		$this->addOption(
-						'delete-address',
-						false,
-						InputOption::VALUE_NONE,
-						'Delete address before transferring account if exists'
-					);
-
-		$this->addOption(
 						'force-order',
 						false,
 						InputOption::VALUE_NONE,
@@ -114,9 +93,6 @@ class SendNewOrders extends Command
 			
 		$params['order']			= $input->getOption('order');
 		$params['order-id']			= $input->getOption('order-id');
-		$params['delete-order']		= $input->getOption('delete-order');
-		$params['delete-customer']	= $input->getOption('delete-customer');
-		$params['delete-address']	= $input->getOption('delete-address');
 		$params['force-order']		= $input->getOption('force-order');
 		$params['debug-order']		= $input->getOption('debug-order');
 		$params['output']			= $output;
@@ -132,8 +108,6 @@ class SendNewOrders extends Command
 		$this->_orderSyncHelper->syncOrders($params,$output);	
 
 		return \Magento\Framework\Console\Cli::RETURN_SUCCESS;
-		//$output->writeln('<info>Success Message.</info>');
-		//$output->writeln('<error>An error encountered.</error>');
 	}
 }
 

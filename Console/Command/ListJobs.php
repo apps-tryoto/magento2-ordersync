@@ -73,6 +73,7 @@ class ListJobs extends Command
 									__('Error Count'), 
 								]);
 				foreach ($orders as $order) {
+
 					$table->addRow([
 						@$order['entity_id'			],
 						@$order['increment_id'		],
@@ -86,12 +87,12 @@ class ListJobs extends Command
 					$table->render();
 
 				}
-				else 
-				{
-					$output->writeln(__('No order in job list'));
-				} // else sonu
 				
 			} // if sonu
+			else 
+			{
+				$output->writeln(__('No order in job list'));
+			} // else sonu
 
 			return \Magento\Framework\Console\Cli::RETURN_SUCCESS;
 

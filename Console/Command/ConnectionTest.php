@@ -60,8 +60,6 @@ class ConnectionTest extends Command
 		
 		$output->writeln('');
 
-		$this->api_url
-
 		if ($token != '' and $token !== false) 
 		{
 			$masked_token = mb_substr($token,0,30)." ... ".mb_substr($token,-30);

@@ -40,11 +40,6 @@ class View extends \Magento\Backend\App\Action
         parent::__construct($context);
     }
 
-	protected function _isAllowed()
-	{
-		return $this->_authorization->isAllowed('Oto_OrderSync::Job_View');
-	}
-
 	// -------------------------------------------------------------------------------------------------------
 	public function returnWithMessage($message, $type='success', $url = '') {
 
