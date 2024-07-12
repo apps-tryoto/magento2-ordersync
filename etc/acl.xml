@@ -1,14 +1,24 @@
-<?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
-    <acl>
-        <resources>
-            <resource id="Magento_Backend::admin">
+	<acl>
+		<resources>
+			<resource id="Magento_Backend_admin">
+				<resource id="Oto_OrderSync::Menu" title="Oto Order Sync" sortOrder="9999">
+					<resource id="Oto_OrderSync::Menu" title="Oto Integration" sortOrder="100">
+						<resource id="Oto_OrderSync::Reports" title="Order Sync" sortOrder="110">
+							<resource id="Oto_OrderSync::Reports_Order_Transactions" title="Order Sync Job List" sortOrder="120"/>
+						</resource>
+					</resource>
+					<resource id="Oto_OrderSync::General" title="Settings" sortOrder="130">
+						<resource id="Oto_OrderSync::General_OrderSync" title="Order Sync Settings" sortOrder="140"/>
+						<resource id="Oto_OrderSync::General_Connect" title="Connect To Oto" sortOrder="150"/>
+					</resource>
+				</resource>
 				<resource id="Oto_OrderSync::elements" title="Oto Order Sync" sortOrder="9999">
 					<resource id="Oto_OrderSync::OrderSyncJob_List"	title="Order Job List" sortOrder="10" />
 					<resource id="Oto_OrderSync::OrderSyncJob_View"	title="Order Job Detail" sortOrder="20" />
 					<resource id="Oto_OrderSync::Setup"	title="Oto Connect/Disconnect Website" sortOrder="30" />
 				</resource>
             </resource>
-        </resources>
-    </acl>
+		</resources>
+	</acl> 
 </config>

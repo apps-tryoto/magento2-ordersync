@@ -27,7 +27,7 @@ class OrderSync extends \Oto\OrderSync\Helper\Data
 		$this->_order_prefix						= $this->getConfig('oto_ordersync/order_settings/order_prefix');
 		$this->_order_prefix_bankpayment			= $this->getConfig('oto_ordersync/order_settings/order_prefix_bankpayment');
 		$this->_order_prefix_zero_total				= $this->getConfig('oto_ordersync/order_settings/order_prefix_zero_total');
-		$this->_order_prefix_bankpayment_method		= explode(",",$this->getConfig('oto_ordersync/order_settings/order_prefix_bankpayment_method')); 
+		$this->_order_prefix_bankpayment_method		= explode(",",trim(''.$this->getConfig('oto_ordersync/order_settings/order_prefix_bankpayment_method'))); 
 
 		$this->_order_suffix						= $this->getConfig('oto_ordersync/order_settings/order_suffix');
 		$this->_order_desc_suffix					= $this->getConfig('oto_ordersync/order_settings/order_desc_suffix');
@@ -48,7 +48,7 @@ class OrderSync extends \Oto\OrderSync\Helper\Data
 		$this->_send_as_tax_included				= $this->getConfig('oto_ordersync/order_settings/send_as_tax_included');
 
 		$this->delete_is_enabled					= false; /// Sistem genelinde karşıdan yazılımdan kayıt silmeyi açmak için true
-		$this->_order_status_by_payment_method		= explode(",",''.$this->getConfig('oto_ordersync/order_settings/order_status_by_payment_method')); 
+		$this->_order_status_by_payment_method		= explode(",",trim(''.$this->getConfig('oto_ordersync/order_settings/order_status_by_payment_method'))); 
 
 		$this->fs									= $this->_objectManager->create('\Magento\Framework\Filesystem');
 		$this->pubPath								= $this->fs->getDirectoryRead(\Magento\Framework\App\Filesystem\DirectoryList::PUB)->getAbsolutePath();
