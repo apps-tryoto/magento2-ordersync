@@ -28,7 +28,7 @@ MENA's #1 shipping gateway for e-commerce stores and retailers to ship, manage, 
 ##### Using Composer (recommended)
 
 ```sh
-composer require oto/mage2-ordersync;
+composer require tryoto/mage2-ordersync;
 php bin/magento maintenance:enable;
 php bin/magento module:enable Oto_OrderSync;
 php bin/magento setup:upgrade;
@@ -42,7 +42,7 @@ php bin/magento cache:flush;
 
 ```sh
 cd your_website_path;
-git clone oto/mage2-ordersync app/code/Oto/OrderSync;
+git clone https://github.com/apps-tryoto/magento2-ordersync;
 php bin/magento maintenance:enable;
 php bin/magento module:enable Oto_OrderSync;
 php bin/magento setup:upgrade;
