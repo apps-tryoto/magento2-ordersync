@@ -42,7 +42,7 @@ php bin/magento cache:flush;
 
 ```sh
 cd your_website_path;
-git clone https://github.com/apps-tryoto/magento2-ordersync;
+git clone https://github.com/apps-tryoto/magento2-ordersync app/code/Oto/OrderSync;
 php bin/magento maintenance:enable;
 php bin/magento module:enable Oto_OrderSync;
 php bin/magento setup:upgrade;
@@ -55,11 +55,10 @@ php bin/magento cache:flush;
 ##### Using manual download and FTP Upload
 
 Go to [https://github.com/oto/mage2-ordersync/releases](https://github.com/oto/mage2-ordersync/releases) and download latest version.
-
+Open zipfile and upload OrderSync directory as app/code/Oto/OrderSync
 
 ```sh
 cd your_website_path;
-git clone oto/mage2-ordersync app/code/Oto/OrderSync;
 php bin/magento maintenance:enable;
 php bin/magento module:enable Oto_OrderSync;
 php bin/magento setup:upgrade;
