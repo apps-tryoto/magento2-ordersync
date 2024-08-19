@@ -2,7 +2,7 @@
     "name": "tryoto/mage2-ordersync",
     "description": "Order Synchronization extension for Magento 2x",
     "type": "magento2-module",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "homepage": "https://www.tryoto.com",
     "authors": [{
         "name" : "Hidayet Ok / TryOto",
