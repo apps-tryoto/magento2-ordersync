@@ -1,9 +1,9 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
 	<acl>
 		<resources>
-			<resource id="Magento_Backend_admin">
+			<resource id="Magento_Backend::admin">
 				<resource id="Oto_OrderSync::Menu" title="Oto Order Sync" sortOrder="9999">
-					<resource id="Oto_OrderSync::Menu" title="Oto Integration" sortOrder="100">
+					<resource id="Oto_OrderSync::Integration" title="Oto Integration" sortOrder="100">
 						<resource id="Oto_OrderSync::Reports" title="Order Sync" sortOrder="110">
 							<resource id="Oto_OrderSync::Reports_Order_Transactions" title="Order Sync Job List" sortOrder="120"/>
 						</resource>
