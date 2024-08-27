@@ -68,4 +68,12 @@ php bin/magento maintenance:disable;
 php bin/magento cache:flush;
 ```
 
+##### After module setup
+
+Add this cron command to cron to sync your orders with oto in period which you want;
+
+```sh
+*/2 * * * * cd your_website_path; php bin/magento oto:new_order_sync >> var/log/oto_ordersync_new_orders.log
+```
+
 © All rights reserved OTO Global Inc. © 2024 | [www.tryoto.com](https://www.tryoto.com)
