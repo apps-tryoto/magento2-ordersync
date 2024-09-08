@@ -23,7 +23,10 @@ use Symfony\Component\Console\Output\OutputInterface;
 #[\AllowDynamicProperties]
 class ListJobs extends Command
 {
-	// -------------------------------------------------------------------------------------------------------
+	/*
+		@function
+	*/
+
 	function __construct(
 		\Oto\OrderSync\Helper\Data				$_otoHelper,
 		\Oto\OrderSync\Helper\OrderListQueue		$_orderSyncHelper
@@ -34,7 +37,7 @@ class ListJobs extends Command
 
 		parent::__construct();
 
-	} // function sonu ---------------------------------------------------------------------------------------
+	} // eof func
 
 	/**
 	 * @inheritDoc

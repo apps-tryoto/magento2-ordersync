@@ -19,7 +19,10 @@ use Magento\Backend\Block\Template;
 #[\AllowDynamicProperties]
 class Index extends Template
 {
-	// -------------------------------------------------------------------------------------------------------
+	/*
+		@function
+	*/
+
 	function __construct(
         \Magento\Backend\Block\Template\Context $context,
 		\Oto\OrderSync\Helper\Data $_otoHelper	
@@ -27,7 +30,7 @@ class Index extends Template
 	{
         parent::__construct($context);
 		$this->_otoHelper = $_otoHelper;
-	} // function sonu ---------------------------------------------------------------------------------------
+	} // eof func
 	
 	/*
 		@function
@@ -46,7 +49,10 @@ class Index extends Template
 	}
 	
 
-	// -------------------------------------------------------------------------------------------------------
+	/*
+		@function
+	*/
+
 	function getTitle() {
 	
 		if ($this->getIsStoreConnected() === true) 
@@ -58,7 +64,7 @@ class Index extends Template
 			return __('Connect To OTO');
 		} // else sonu
 
-	} // function sonu ---------------------------------------------------------------------------------------
+	} // eof func
 
 	/*
 		@function

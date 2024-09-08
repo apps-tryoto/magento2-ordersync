@@ -24,7 +24,10 @@ class ResetErrorCount extends \Magento\Backend\App\Action
 
     protected $resultPageFactory;
 
-	// -------------------------------------------------------------------------------------------------------
+	/*
+		@function
+	*/
+
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
         \Magento\Framework\View\Result\PageFactory $resultPageFactory,
@@ -41,13 +44,19 @@ class ResetErrorCount extends \Magento\Backend\App\Action
         parent::__construct($context);
     }
 
-	// -------------------------------------------------------------------------------------------------------
+	/*
+		@function
+	*/
+
 	protected function _isAllowed()
 	{
 		return $this->_authorization->isAllowed('Oto_OrderSync::Job_ResetErrorCount');
     }
 
-	// -------------------------------------------------------------------------------------------------------
+	/*
+		@function
+	*/
+
 	public function returnWithMessage($message, $type='success', $url = '') {
 
 			if ($url == '') 
@@ -75,9 +84,12 @@ class ResetErrorCount extends \Magento\Backend\App\Action
 
 			return $resultRedirect;	
 
-	} // function sonu ---------------------------------------------------------------------------------------
+	} // eof func
 	
-	// -------------------------------------------------------------------------------------------------------
+	/*
+		@function
+	*/
+
 	public function execute()
     {
 		$job_id = $this->getRequest()->getParam('job_id');
@@ -98,6 +110,6 @@ class ResetErrorCount extends \Magento\Backend\App\Action
 		
 		return $this->returnWithMessage(__('Job error count is cleared.'),'success','');	
 
-	} // function sonu ---------------------------------------------------------------------------------------
+	} // eof func
 
 }

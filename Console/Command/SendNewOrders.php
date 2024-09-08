@@ -27,7 +27,10 @@ class SendNewOrders extends Command
 	public $_otoHelper;
 	public $_orderSyncHelper;
 
-	// -------------------------------------------------------------------------------------------------------
+	/*
+		@function
+	*/
+
 	function __construct(
 		\Oto\OrderSync\Helper\Data			$_otoHelper,
 		\Oto\OrderSync\Helper\OrderSyncNew	$_orderSyncHelper
@@ -38,7 +41,7 @@ class SendNewOrders extends Command
 
 		parent::__construct();
 
-	} // function sonu ---------------------------------------------------------------------------------------
+	} // eof func
 	
 	
 	/**

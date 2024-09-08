@@ -36,12 +36,15 @@ class Index extends Action
         return $resultPage;
     }
 
-	// -------------------------------------------------------------------------------------------------------
+	/*
+		@function
+	*/
+
 	function getTitle() {
 		
 		return (string) __('Denememe');
 
-	} // function sonu ---------------------------------------------------------------------------------------
+	} // eof func
 	
 	protected function _isAllowed()
     {

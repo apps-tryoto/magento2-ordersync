@@ -20,7 +20,10 @@ use Magento\Framework\App\Helper\AbstractHelper;
 class OrderListQueue extends \Oto\OrderSync\Helper\Data
 {
 
-	// -------------------------------------------------------------------------------------------------------
+	/*
+		@function
+	*/
+
 	public function listPendingOrders() {
 
 		$this->debug = $this->getConfig('oto_ordersync/debug/is_active');
@@ -56,6 +59,6 @@ class OrderListQueue extends \Oto\OrderSync\Helper\Data
 
 		return $ret_orders;
 
-	} // function sonu ---------------------------------------------------------------------------------------
+	} // eof func
 
 }

@@ -20,7 +20,10 @@ use Magento\Framework\App\Helper\AbstractHelper;
 class OrderSyncNew extends \Oto\OrderSync\Helper\OrderSync
 {
 
-	// -------------------------------------------------------------------------------------------------------
+	/*
+		@function
+	*/
+
 	public function syncOrders($params, $output) {
 
 		if (!is_array($params)) 
@@ -160,9 +163,12 @@ class OrderSyncNew extends \Oto\OrderSync\Helper\OrderSync
 		
 		} // foreach sonu
 
-	} // function sonu ---------------------------------------------------------------------------------------
+	} // eof func
 	
-	// -------------------------------------------------------------------------------------------------------
+	/*
+		@function
+	*/
+
 	public function createOrderInTarget($orderId) {
 
 		if ($orderId < 1) 
@@ -387,6 +393,6 @@ class OrderSyncNew extends \Oto\OrderSync\Helper\OrderSync
 
 		return $ret;
 
-	} // function sonu ---------------------------------------------------------------------------------------
+	} // eof func
 	
 }

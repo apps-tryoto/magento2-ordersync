@@ -19,7 +19,10 @@ use Magento\Framework\App\Helper\AbstractHelper;
 #[\AllowDynamicProperties]
 class OrderSync extends \Oto\OrderSync\Helper\Data
 {
-	// -------------------------------------------------------------------------------------------------------
+	/*
+		@function
+	*/
+
 	public function __construct() {
 
 		$this->db = $this->getDbConnection();
@@ -58,19 +61,25 @@ class OrderSync extends \Oto\OrderSync\Helper\Data
 		$this->_transportBuilder					= $this->_objectManager->create('\Magento\Framework\Mail\Template\TransportBuilder');
 		$this->_inlineTranslation					= $this->_objectManager->create('\Magento\Framework\Translate\Inline\StateInterface');
 
-	} // function sonu ---------------------------------------------------------------------------------------
+	} // eof func
 	
 	
-	// -------------------------------------------------------------------------------------------------------
+	/*
+		@function
+	*/
+
 	public function getApiCredentials() {
 
 		$this->api_url			= 'https://oto-webhook-listener-2yycsthcma-ew.a.run.app/salesChannel/magento/VGdYYTNUN2k5dUdCaEQ1MUZPVzJCZz09';
 		$this->api_hash_key		= trim(''.$this->getConfig('oto_ordersync/connection_settings/api_hash_key'));
 
-	} // function sonu ---------------------------------------------------------------------------------------
+	} // eof func
 
 
-	// -------------------------------------------------------------------------------------------------------
+	/*
+		@function
+	*/
+
 	function getGiftMessagesCombined($order) {
 	
 		$ret = false;
@@ -135,10 +144,13 @@ class OrderSync extends \Oto\OrderSync\Helper\Data
 
 		return $ret;
 	
-	} // function sonu ---------------------------------------------------------------------------------------
+	} // eof func
 	
 	
-	// -------------------------------------------------------------------------------------------------------
+	/*
+		@function
+	*/
+
 	public function checkBackorderStatus($prod_id, $product) {
 	
 		if (intval($prod_id) < 1) 
@@ -180,9 +192,12 @@ class OrderSync extends \Oto\OrderSync\Helper\Data
 				
 		return false;
 
-	} // function sonu ---------------------------------------------------------------------------------------
+	} // eof func
 	
-	// -------------------------------------------------------------------------------------------------------
+	/*
+		@function
+	*/
+
 	public function getBackorderDate($product) {
 		
 		if (!is_object($product) or $product->getId() < 1) 
@@ -209,10 +224,13 @@ class OrderSync extends \Oto\OrderSync\Helper\Data
 
 		return $backorder_date;
 
-	} // function sonu ---------------------------------------------------------------------------------------
+	} // eof func
 	
 
-	// -------------------------------------------------------------------------------------------------------
+	/*
+		@function
+	*/
+
 	public function getAccountCode($order) {
 
 		$this->_targetAccountId = null;
@@ -273,9 +291,12 @@ class OrderSync extends \Oto\OrderSync\Helper\Data
 
 		return false;		
 
-	} // function sonu ---------------------------------------------------------------------------------------
+	} // eof func
 
-	// -------------------------------------------------------------------------------------------------------
+	/*
+		@function
+	*/
+
 	public function getBillingAndShippingIsSame($order) {
 
 		if ($order->getIsVirtual()) 
@@ -316,9 +337,12 @@ class OrderSync extends \Oto\OrderSync\Helper\Data
 		
 		return true;
 
-	} // function sonu ---------------------------------------------------------------------------------------
+	} // eof func
 
-	// -------------------------------------------------------------------------------------------------------
+	/*
+		@function
+	*/
+
 	public function getRegionCodeFromId($regionId) {
 
 		$this->getDbConn();
@@ -334,9 +358,12 @@ class OrderSync extends \Oto\OrderSync\Helper\Data
 		
 		return false;
 
-	} // function sonu ---------------------------------------------------------------------------------------
+	} // eof func
 	
-	// -------------------------------------------------------------------------------------------------------
+	/*
+		@function
+	*/
+
 	public function getAttributeIdByCode($attribute_code) {
 
 		$this->getDbConn();
@@ -352,9 +379,12 @@ class OrderSync extends \Oto\OrderSync\Helper\Data
 		
 		return false;
 
-	} // function sonu ---------------------------------------------------------------------------------------
+	} // eof func
 	
-	// -------------------------------------------------------------------------------------------------------
+	/*
+		@function
+	*/
+
 	public function getCityCodeFromId($cityId) {
 
 		$this->getDbConn();
@@ -370,9 +400,12 @@ class OrderSync extends \Oto\OrderSync\Helper\Data
 		
 		return false;
 
-	} // function sonu ---------------------------------------------------------------------------------------
+	} // eof func
 	
-	// -------------------------------------------------------------------------------------------------------
+	/*
+		@function
+	*/
+
 	public function getDbConn() {
 
 		if (!@$this->db) 
@@ -382,9 +415,12 @@ class OrderSync extends \Oto\OrderSync\Helper\Data
 			$this->db		= $this->res->getConnection();
 		} // if sonu
 
-	} // function sonu ---------------------------------------------------------------------------------------
+	} // eof func
 	
-	// -------------------------------------------------------------------------------------------------------
+	/*
+		@function
+	*/
+
 	function getOtoOrderDetail($otoOrderId = 0) {
 	
 		if ($otoOrderId == 0) 
@@ -419,7 +455,7 @@ class OrderSync extends \Oto\OrderSync\Helper\Data
 
 		return $ret_arr;
 	
-	} // function sonu ---------------------------------------------------------------------------------------
+	} // eof func
 	
 
 }

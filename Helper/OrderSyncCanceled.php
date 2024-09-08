@@ -20,7 +20,10 @@ use Magento\Framework\App\Helper\AbstractHelper;
 class OrderSyncCanceled extends \Oto\OrderSync\Helper\Data
 {
 
-	// -------------------------------------------------------------------------------------------------------
+	/*
+		@function
+	*/
+
 	public function syncCanceledOrders($params, $output) {
 
 		if (!is_array($params)) 
@@ -157,9 +160,12 @@ class OrderSyncCanceled extends \Oto\OrderSync\Helper\Data
 		//// EOF Order Loop ////////////////////////////////////////////////////////////////////////////
 		$this->endOrderSyncSession();
 
-	} // function sonu ---------------------------------------------------------------------------------------
+	} // eof func
 	
-	// -------------------------------------------------------------------------------------------------------
+	/*
+		@function
+	*/
+
 	public function cancelOrderInTarget($orderId, $jobData) {
 
 		if ($orderId < 1) 
@@ -309,6 +315,6 @@ class OrderSyncCanceled extends \Oto\OrderSync\Helper\Data
 
 		return $ret;
 
-	} // function sonu ---------------------------------------------------------------------------------------
+	} // eof func
 
 }

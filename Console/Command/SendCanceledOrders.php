@@ -27,7 +27,10 @@ class SendCanceledOrders extends Command
 	public $_otoHelper;
 	public $_orderSyncHelper;
 
-	// -------------------------------------------------------------------------------------------------------
+	/*
+		@function
+	*/
+
 	function __construct(
 		\Oto\OrderSync\Helper\Data					$_otoHelper,
 		\Oto\OrderSync\Helper\OrderSyncCanceled		$_orderSyncHelper
@@ -38,7 +41,7 @@ class SendCanceledOrders extends Command
 
 		parent::__construct();
 
-	} // function sonu ---------------------------------------------------------------------------------------
+	} // eof func
 	
 	
 	/**

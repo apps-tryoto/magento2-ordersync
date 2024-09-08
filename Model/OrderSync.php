@@ -22,7 +22,10 @@ class OrderSync extends \Magento\Framework\Model\AbstractModel{
         $this->_init(\Oto\OrderSync\Model\ResourceModel\OrderSync::class);
     }
 
-	// -------------------------------------------------------------------------------------------------------
+	/*
+		@function
+	*/
+
 	function save() {
 	
 		if (is_null($this->getData('created_at'))) 
@@ -33,7 +36,7 @@ class OrderSync extends \Magento\Framework\Model\AbstractModel{
 
 		parent::save();
 
-	} // function sonu ---------------------------------------------------------------------------------------
+	} // eof func
 
 
 }

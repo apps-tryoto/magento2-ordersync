@@ -40,7 +40,10 @@ class View extends \Magento\Backend\App\Action
         parent::__construct($context);
     }
 
-	// -------------------------------------------------------------------------------------------------------
+	/*
+		@function
+	*/
+
 	public function returnWithMessage($message, $type='success', $url = '') {
 
 			if ($url == '') 
@@ -68,7 +71,7 @@ class View extends \Magento\Backend\App\Action
 
 			return $resultRedirect;	
 
-	} // function sonu ---------------------------------------------------------------------------------------
+	} // eof func
 
     public function execute()
     {
