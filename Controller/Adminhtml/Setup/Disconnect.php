@@ -69,13 +69,25 @@ class Disconnect extends Action
 		$this->_otoHelper->setConfig('oto_access_token', null, 'default', 0);
 		$this->_otoHelper->setConfig('oto_access_secret', null, 'default', 0);
 
-		$this->returnToLoginWithSuccess(__('Your Store sucessfully disconnected from OTO.'));
+		$cacheCleanStatus = $this->_otoHelper->cacheClean(['config','config_integration','config_integration_api','config_webservice']);
+
+		if (@$cacheCleanStatus['status'] == true) 
+		{
+			$this->returnToLoginWithSuccess(__('Your Store sucessfully disconnected from OTO. %1 caches cleaned.', @$cacheCleanStatus['cleaned_cache_types']));
+		} // if sonu
+		else 
+		{
+			$this->returnToLoginWithSuccess(__('Your Store sucessfully disconnected from OTO. <strong>Do not forget to Clean Cache</strong>.'));
+		} // else sonu
 		
 		$this->_redirect('*/*/index');
 
 	}
 
-	// -------------------------------------------------------------------------------------------------------
+	/*
+		@function
+	*/
+
 	function returnToLoginWithError($errorMessage = '') {
 
 		if ($errorMessage != '')
@@ -85,9 +97,12 @@ class Disconnect extends Action
 
 		return $this->_redirect('oto/setup');
 
-	} // function sonu ---------------------------------------------------------------------------------------
+	} // eof func
 
-	// -------------------------------------------------------------------------------------------------------
+	/*
+		@function
+	*/
+
 	function returnToLoginWithSuccess($message = '') {
 
 		if ($message != '')
@@ -97,7 +112,7 @@ class Disconnect extends Action
 
 		return $this->_redirect('oto/setup');
 
-	} // function sonu ---------------------------------------------------------------------------------------
+	} // eof func
 
 
 	protected function _isAllowed()

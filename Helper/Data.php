@@ -33,7 +33,9 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 	public		$_api_url;
 	public		$_api_test_url;
 
-	// -------------------------------------------------------------------------------------------------------
+	/*
+		@function
+	*/
     public function __construct(
         \Magento\Framework\App\Helper\Context $context,
 		\Magento\Framework\App\Config\ScopeConfigInterface $_scopeConfig,
@@ -64,11 +66,13 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
 		parent::__construct($context);
 
-	} // function sonu ---------------------------------------------------------------------------------------
+	} // eof func
 	
 
 	
-	// -------------------------------------------------------------------------------------------------------
+	/*
+		@function
+	*/
 	public function getConfigWoCache($config_path, $website_id = 0, $store_id = 0)
 	{
 		
@@ -89,9 +93,11 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
 		return @$this->_configDataWoCache[$config_path];
 
-	} // function sonu ---------------------------------------------------------------------------------------
+	} // eof func
 
-	// -------------------------------------------------------------------------------------------------------
+	/*
+		@function
+	*/
 	public function getConfig($config_path)
 	{
 		if (!isset($this->_configData[$config_path]))
@@ -106,9 +112,11 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 		} // if sonu
 
 		return $this->_configData[$config_path];
-	} // function sonu ---------------------------------------------------------------------------------------
+	} // eof func
 
-	// -------------------------------------------------------------------------------------------------------
+	/*
+		@function
+	*/
 	public function setConfig($config_path = '', $value = '', $storeId = 0)
 	{
 		if ($config_path == '') 
@@ -118,9 +126,11 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 		
 		$this->_scopeConfigWriter->save($config_path, $value, $scope = \Magento\Framework\App\Config\ScopeConfigInterface::SCOPE_TYPE_DEFAULT, $storeId = 0);
 
-	} // function sonu ---------------------------------------------------------------------------------------
+	} // eof func
 
-	// -------------------------------------------------------------------------------------------------------
+	/*
+		@function
+	*/
 	public function getMagentoVersion() {
 		
 		return [
@@ -128,9 +138,11 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 				'version' => $this->_magentoMetaData->getVersion(),
 			];
 
-	} // function sonu ---------------------------------------------------------------------------------------
+	} // eof func
 
-	// -------------------------------------------------------------------------------------------------------
+	/*
+		@function
+	*/
 	public function getObjectManager() {
 	
 		if (!$this->_objectManager) 
@@ -139,9 +151,11 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 		} // if sonu
 
 		return $this->_objectManager;
-	} // function sonu ---------------------------------------------------------------------------------------
+	} // eof func
 
-	// -------------------------------------------------------------------------------------------------------
+	/*
+		@function
+	*/
 	public function getCurrentDateTime() {
 
 		if (!$this->_currentDateTime)
@@ -152,9 +166,11 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
 		return $this->_currentDateTime;
 
-	} // function sonu ---------------------------------------------------------------------------------------
+	} // eof func
 
-	// -------------------------------------------------------------------------------------------------------
+	/*
+		@function
+	*/
 	public function getCurrentDate() {
 
 		if (!$this->_currentDate)
@@ -165,9 +181,11 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
 		return $this->_currentDate;
 
-	} // function sonu ---------------------------------------------------------------------------------------
+	} // eof func
 
-	// -------------------------------------------------------------------------------------------------------
+	/*
+		@function
+	*/
 	public function getCurrentUnixDate() {
 
 		if (!$this->_currentUnixDate)
@@ -178,18 +196,22 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
 		return $this->_currentUnixDate;
 
-	} // function sonu ---------------------------------------------------------------------------------------
+	} // eof func
 
-	// -------------------------------------------------------------------------------------------------------
+	/*
+		@function
+	*/
 	public function getStrToDate($str) {
 
 		$this->_date = $this->getDateObject();
 		$ret = $this->_date->date($str);
 		return $ret;
 
-	} // function sonu ---------------------------------------------------------------------------------------
+	} // eof func
 
-	// -------------------------------------------------------------------------------------------------------
+	/*
+		@function
+	*/
 	public function getDateObject() {
 
 		if (!is_object($this->_date))
@@ -200,9 +222,11 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
 		return $this->_date;
 
-	} // function sonu ---------------------------------------------------------------------------------------
+	} // eof func
 
-	// -------------------------------------------------------------------------------------------------------
+	/*
+		@function
+	*/
 	public function getStoreBasedDate($object, $date_field = 'created_at', $format = 'Y-m-d H:i:s')
     {
         $datetime = \DateTime::createFromFormat('Y-m-d H:i:s', $object->getData($date_field));
@@ -215,7 +239,9 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         return $datetime->format($format); 
     }
 
-	// -------------------------------------------------------------------------------------------------------
+	/*
+		@function
+	*/
 	public function getDbConnection() {
 
 		if (!isset($this->_conn))
@@ -226,9 +252,47 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
 		return $this->_conn;
 
-	} // function sonu ---------------------------------------------------------------------------------------
-	
-	// -------------------------------------------------------------------------------------------------------
+	} // eof func
+
+	/*
+		@function
+	*/
+	public function cacheClean($cacheType = []) {
+
+		try{
+			$_cacheTypeList = $this->getObjectManager()->create('Magento\Framework\App\Cache\TypeListInterface');
+			$_cacheFrontendPool = $this->getObjectManager()->create('Magento\Framework\App\Cache\Frontend\Pool');
+			$types = ['config','layout','block_html','collections','reflection','db_ddl','eav','config_integration','config_integration_api','full_page','translate','config_webservice'];
+
+			if (count($cacheType) > 0) 
+			{
+				$types = $cacheType;
+			} // if sonu
+		
+			$cleanedCacheTypes = [];
+			
+			foreach ($types as $type) {
+				$_cacheTypeList->cleanType($type);
+				$cleanedCacheTypes[$type] = 1;
+			}
+			
+			foreach ($_cacheFrontendPool as $cacheFrontend) {
+				$cacheFrontend->getBackend()->clean();
+				$cleanedCacheTypes[$type] = 1;
+			}
+
+			return ['status' => true, 'cleaned_cache_types' => array_keys($cleanedCacheTypes)];
+		
+		}
+		catch(Exception $e){
+			return ['status' => false, 'error_message' => $e->getMessage()];
+		}	
+		
+	} // eof func
+
+	/*
+		@function
+	*/
 	public function run_curl($params = []) {
 
 		$url			= @$params['url'];
@@ -336,9 +400,11 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 		return array('res' => $res, 'info' => $info);
 
 
-	} // function sonu ---------------------------------------------------------------------------------------
+	} // eof func
 
-	// -------------------------------------------------------------------------------------------------------
+	/*
+		@function
+	*/
 	function createNewIntegration($name = '', $email = '', $endpoint = '') {
 	
 		if ($name == '') 
@@ -418,9 +484,11 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 			}
 		}
 
-	} // function sonu ---------------------------------------------------------------------------------------
+	} // eof func
 	
-	// -------------------------------------------------------------------------------------------------------
+	/*
+		@function
+	*/
 	function deleteIntegration($integrationId = 0) {
 	
 		if ($integrationId == 0) 
@@ -443,7 +511,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 			}
 		}
 
-	} // function sonu ---------------------------------------------------------------------------------------
+	} // eof func
 	
 	/*
 		@function

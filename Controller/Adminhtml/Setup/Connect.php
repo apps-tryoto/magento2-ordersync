@@ -173,8 +173,17 @@ class Connect extends Action
 				$this->_otoHelper->setConfig('oto_access_token', @$intData['accessToken'], 'default', 0);
 				$this->_otoHelper->setConfig('oto_access_secret', @$intData['accessSecret'], 'default', 0);
 
-				$this->returnToLoginWithSuccess(__('Your Store sucessfully connected to OTO. <strong>Do not forget to Clean Cache</strong>.'));
-				
+				$cacheCleanStatus = $this->_otoHelper->cacheClean(['config','config_integration','config_integration_api','config_webservice']);
+	
+				if (@$cacheCleanStatus['status'] == true) 
+				{
+					$this->returnToLoginWithSuccess(__('Your Store sucessfully connected to OTO. %1 caches cleaned.', @$cacheCleanStatus['cleaned_cache_types']));
+				} // if sonu
+				else 
+				{
+					$this->returnToLoginWithSuccess(__('Your Store sucessfully connected to OTO. <strong>Do not forget to Clean Cache</strong>.'));
+				} // else sonu
+
 				return;
 			} // if sonu
 			else 
@@ -194,7 +203,10 @@ class Connect extends Action
 
 	}
 
-	// -------------------------------------------------------------------------------------------------------
+	/*
+		@function
+	*/
+
 	function returnToLoginWithError($errorMessage = '') {
 
 		if ($errorMessage != '')
@@ -204,9 +216,12 @@ class Connect extends Action
 
 		return $this->_redirect('oto/setup');
 
-	} // function sonu ---------------------------------------------------------------------------------------
+	} // eof func
 
-	// -------------------------------------------------------------------------------------------------------
+	/*
+		@function
+	*/
+
 	function returnToLoginWithSuccess($message = '') {
 
 		if ($message != '')
@@ -216,7 +231,7 @@ class Connect extends Action
 
 		return $this->_redirect('oto/setup');
 
-	} // function sonu ---------------------------------------------------------------------------------------
+	} // eof func
 
 
 	protected function _isAllowed()
