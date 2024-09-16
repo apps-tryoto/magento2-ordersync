@@ -89,9 +89,8 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
 							];
 		
 		$this->addColumn( 'job_id_sel'          , ['header' => __('#'),					'header_css_class' => 'a-center',	'type' => 'checkbox',	'name' => 'job_id'                ,'align' => 'center',	'index' => 'job_id'                ,'sortable' => false,	] ); 
-		$this->addColumn( 'job_id'              , ['header' => __('Jon Id'),			'header_css_class' => 'a-center',	'type' => 'number',		'name' => 'job_id'                ,'align' => 'center',	'index' => 'job_id'                ,'sortable' => true,	] ); 
+		$this->addColumn( 'job_id'              , ['header' => __('Job Id'),			'header_css_class' => 'a-center',	'type' => 'number',		'name' => 'job_id'                ,'align' => 'center',	'index' => 'job_id'                ,'sortable' => true,	] ); 
 		$this->addColumn( 'job_type'            , ['header' => __('Job Type'),			'header_css_class' => 'a-left',		'type' => 'options',	'name' => 'job_type'            ,'align' => 'center',	'index' => 'job_type'            ,'options' => $options_type,] ); 
-		$this->addColumn( 'job_target'          , ['header' => __('Target'),			'header_css_class' => 'a-left',		'type' => 'options',	'name' => 'job_target'          ,'align' => 'center',	'index' => 'job_target'          ,'options' => $options_target,] ); 
 		$this->addColumn( 'order_id'            , ['header' => __('Order Id'),			'header_css_class' => 'a-center',	'type' => 'text',		'name' => 'order_id'            ,'align' => 'center',	'index' => 'order_id'            ,] ); 
 		$this->addColumn( 'order_increment_id'  , ['header' => __('Order No'),			'header_css_class' => 'a-left',		'type' => 'text',		'name' => 'order_increment_id'  ,'align' => 'center',	'index' => 'order_increment_id'  ,] ); 
 		$this->addColumn( 'customer_id'         , ['header' => __('Customer Id'),		'header_css_class' => 'a-center',	'type' => 'text',		'name' => 'customer_id'         ,'align' => 'center',	'index' => 'customer_id'         ,] ); 
@@ -109,12 +108,12 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
 		$actions = [
 			[
 				'caption' => __('View'),
-				'url' => ['base' => 'oto_order_sync/OrderSync/View'],
+				'url' => ['base' => 'oto/OrderSync/View'],
 				'field'   => 'job_id', 
 			],
 			[
 				'caption' => __('Reset Error Count'),
-				'url' => ['base' => 'oto_order_sync/OrderSync/ResetErrorCount'],
+				'url' => ['base' => 'oto/OrderSync/ResetErrorCount'],
 				'field'   => 'job_id', 
 			]
 		];
@@ -139,14 +138,14 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
 	public function getRowUrl($row)
 	{
 		return $this->getUrl(
-			'oto_order_sync/OrderSync/View',
+			'oto/OrderSync/View',
 			['job_id' => $row->getId()]
 		);
 	}
 
     public function getGridUrl()
     {
-        return $this->getUrl('oto_order_sync/Grid/OrderSync', ['_current' => true]);
+        return $this->getUrl('oto/Grid/OrderSync', ['_current' => true]);
     }
 
     /**

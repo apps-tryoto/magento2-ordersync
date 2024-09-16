@@ -3,8 +3,8 @@
     <menu>
         <add id="Oto::Menu"                         resource="Oto_OrderSync::Menu"							title="Oto Integration"		module="Oto_OrderSync" sortOrder="9991"/>
         <add id="Oto::Reports"                      resource="Oto_OrderSync::Reports"						title="Order Sync"			module="Oto_OrderSync" sortOrder="100" parent="Oto::Menu" />
-        <add id="Oto::Reports::Order_Transactions"  resource="Oto_OrderSync::Reports_Order_Transactions"	title="Order Sync Job List" module="Oto_OrderSync" sortOrder="100" parent="Oto::Reports" />
-        <add id="Oto::General"                      resource="Oto_OrderSync::General"						title="Settings"			module="Oto_OrderSync" sortOrder="200" parent="Oto::Menu"		action="oto_order_sync/Grid/OrderSync"/>
+        <add id="Oto::Reports::Order_Transactions"  resource="Oto_OrderSync::Reports_Order_Transactions"	title="Order Sync Job List" module="Oto_OrderSync" sortOrder="100" parent="Oto::Reports" action="oto/Grid/OrderSync"/>
+        <add id="Oto::General"                      resource="Oto_OrderSync::General"						title="Settings"			module="Oto_OrderSync" sortOrder="200" parent="Oto::Menu"		/>
         <add id="Oto::General::OrderSync"           resource="Oto_OrderSync::General_OrderSync"				title="Order Sync Settings" module="Oto_OrderSync" sortOrder="100" parent="Oto::General"	action="adminhtml/system_config/edit/section/Oto_OrderSync/"/>
         <add id="Oto::General::Connect"             resource="Oto_OrderSync::General_Connect"				title="Connect To Oto"		module="Oto_OrderSync" sortOrder="110" parent="Oto::General"	action="oto/setup"/>
     </menu>
