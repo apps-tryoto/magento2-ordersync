@@ -73,7 +73,7 @@ class Disconnect extends Action
 
 		if (@$cacheCleanStatus['status'] == true) 
 		{
-			$this->returnToLoginWithSuccess(__('Your Store sucessfully disconnected from OTO. %1 caches cleaned.', @$cacheCleanStatus['cleaned_cache_types']));
+			$this->returnToLoginWithSuccess(__('Your Store sucessfully disconnected from OTO.'));
 		} // if sonu
 		else 
 		{

@@ -177,7 +177,7 @@ class Connect extends Action
 	
 				if (@$cacheCleanStatus['status'] == true) 
 				{
-					$this->returnToLoginWithSuccess(__('Your Store sucessfully connected to OTO. %1 caches cleaned.', @$cacheCleanStatus['cleaned_cache_types']));
+					$this->returnToLoginWithSuccess(__('Your Store sucessfully connected to OTO.'));
 				} // if sonu
 				else 
 				{
