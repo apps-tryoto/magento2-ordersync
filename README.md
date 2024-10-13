@@ -76,4 +76,20 @@ Add this cron command to cron to sync your orders with oto in period which you w
 */2 * * * * cd your_website_path; php bin/magento oto:new_order_sync >> var/log/oto_ordersync_new_orders.log
 ```
 
+##### Uninstalling
+
+```sh
+composer remove tryoto/mage2-ordersync;
+php bin/magento maintenance:enable;
+php bin/magento module:disable Oto_OrderSync;
+php bin/magento setup:upgrade;
+php bin/magento setup:di:compile;
+php bin/magento setup:static:deploy -f;
+php bin/magento maintenance:disable;
+php bin/magento cache:flush;
+```
+
+Do not forget to remove cron entry from crontab.
+
+
 © All rights reserved OTO Global Inc. © 2024 | [www.tryoto.com](https://www.tryoto.com)
