@@ -66,6 +66,15 @@ $helper = $this->helper('\Oto\OrderSync\Helper\Data');
 				<?php echo __('Enter your OTO panel password.'); ?>
 			</div>
 		</div>
+		<div class="admin__field">
+			<label class="admin__field-label" for="oto_password"><?php echo __('TOTP Key'); ?></label>
+			<div class="admin__field-control">
+				<input type="password" id="totp_key" name="totp_key" class="admin__control-text" required>
+			</div>
+			<div class="admin__field-comment">
+				<?php echo __('Enter your TOTP key if you have.'); ?>
+			</div>
+		</div>
 		<div class="admin__actions-toolbar">
 			<div class="admin__actions-primary">
 				<button type="submit" class="action-primary"><?php echo __('Connect'); ?></button>

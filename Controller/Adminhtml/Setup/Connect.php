@@ -49,6 +49,7 @@ class Connect extends Action
 		$storeName	= trim(''.@$post['oto_store_name']);
 		$userName	= trim(''.@$post['oto_username']);
 		$password	= trim(''.@$post['oto_password']);
+		$totp_key	= trim(''.@$post['totp_key']);
 		
 		if (strlen($storeName) < 1)
 		{
@@ -70,14 +71,22 @@ class Connect extends Action
 
 		$this->_otoHelper->setConfig('oto_last_login_attempt', $this->_otoHelper->getCurrentDateTime(), 'default', 0);
 
-		$payloadData = json_encode([
-							'email'		=> $userName,
-							"password"	=> $password,
-						]);
+		$api_url = $this->_otoHelper->api_url.'/rest/v3/login'
+			
+		$payloadArr = [
+						'email'		=> $userName,
+						"password"	=> $password,
+					];
 
+		if ($totp_key != '') 
+		{
+			$api_url = $this->_otoHelper->api_url.'/rest/v3/loginWithTOTP';
+			$payloadArr['activationCode'] = $totp_key;
+		} // if sonu
+		
 		$curl_params = [
-						'url'			=> $this->_otoHelper->api_url.'/rest/v3/login',
-						'data'			=> $payloadData,
+						'url'			=> $api_url,
+						'data'			=> json_encode($payloadArr),
 						'type'			=> 'POST',
 					];
 
