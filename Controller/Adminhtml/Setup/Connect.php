@@ -71,7 +71,7 @@ class Connect extends Action
 
 		$this->_otoHelper->setConfig('oto_last_login_attempt', $this->_otoHelper->getCurrentDateTime(), 'default', 0);
 
-		$api_url = $this->_otoHelper->api_url.'/rest/v3/login'
+		$api_url = $this->_otoHelper->api_url.'/rest/v3/login';
 			
 		$payloadArr = [
 						'email'		=> $userName,
