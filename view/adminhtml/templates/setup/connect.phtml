@@ -20,7 +20,7 @@ $helper = $this->helper('\Oto\OrderSync\Helper\Data');
 	<img class="logo-default flex-grow-1" src="<?php echo $this->getViewFileUrl('Oto_OrderSync::images/otoLogo.png')?>" alt="OTO" itemprop="url" srcset="<?php echo $this->getViewFileUrl('Oto_OrderSync::images/otoLogo.png')?> 2x">
 </div>
 <div class="oto_form_help">
-<?php echo __('Description goes here')?>	
+<?php echo __('To connect your site automatically, fill in the fields below and click the Connect button.')?>	
 </div>
 <?php 
 	if ($helper->getBearerSetting() != 1) 
@@ -69,13 +69,13 @@ $helper = $this->helper('\Oto\OrderSync\Helper\Data');
 		<div class="admin__field">
 			<label class="admin__field-label" for="oto_password"><?php echo __('TOTP Key'); ?></label>
 			<div class="admin__field-control">
-				<input type="password" id="totp_key" name="totp_key" class="admin__control-text" required>
+				<input type="password" id="totp_key" name="totp_key" class="admin__control-text">
 			</div>
 			<div class="admin__field-comment">
 				<?php echo __('Enter your TOTP key if you have.'); ?>
 			</div>
 		</div>
-		<div class="admin__actions-toolbar">
+		<div class="admin__actions-toolbar" style="margin-top:20px;">
 			<div class="admin__actions-primary">
 				<button type="submit" class="action-primary"><?php echo __('Connect'); ?></button>
 			</div>
